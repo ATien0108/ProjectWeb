@@ -25,18 +25,18 @@ import java.util.Date;
 
 @Controller
 @Service
-@RequestMapping("/login")
+@RequestMapping("")
 public class LoginController {
     @Autowired
     @Qualifier("userServiceImpl")
     IUserServce userServce;
 
-    @RequestMapping("")
+    @RequestMapping("/login.html")
     public String home(){
         return "login";
     }
 
-    @RequestMapping("/register")
+    @RequestMapping("/register.html")
     public String registerForm(ModelMap modelMap){
         return "register";
     }
