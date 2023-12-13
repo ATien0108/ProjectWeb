@@ -40,7 +40,7 @@ public class LoginController {
     public String registerForm(ModelMap modelMap){
         return "register";
     }
-    @PostMapping("registerSS")
+    @PostMapping("/registerSS")
     public String register(ModelMap modelMap, @Valid @ModelAttribute("user") UserModel user, BindingResult result,
                                  @RequestParam("regiteredat") String datestring
                                  ){
@@ -74,18 +74,20 @@ public class LoginController {
     public ModelAndView logintohome(ModelMap modelMap,@RequestParam(name="passwordHash" ,required = false) String passwordHash,
                                     @RequestParam(name="email" ,required = false) String email
                                     ){
+        System.out.println(passwordHash);
+        System.out.println(email);
         if(passwordHash == null ||passwordHash =="" || email == null || email == ""){
-            return new ModelAndView("redirect:/login");
+            return new ModelAndView("redirect:/login.html");
         }
         User entity = new User();
         entity = userServce.findByEmail(email);
         if(email != null){
             if(BCrypt.checkpw(passwordHash,entity.getPasswordHash())) {
-                return new ModelAndView("redirect:/home/index.html");
+                return new ModelAndView("redirect:/index.html");
             }else{
-                return new ModelAndView("redirect:/login");
+                return new ModelAndView("redirect:/login.html");
             }
         }
-        return new ModelAndView("redirect:/home/index.html");
+        return new ModelAndView("redirect:/index.html");
     }
 }
