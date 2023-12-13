@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Page</title>
+    <link rel='stylesheet' href='https://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+    <script src='https://netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js'></script>
+    <link rel="stylesheet" href="/css/post.css">
+    
+</head>
+<body>
+    <div class="container bootstrap snippets bootdey">
+        <div class="row">
+            <h1>Create Post</h1>
+            <div class="col-md-offset-3 col-md-6 col-xs-12">
+                <div class="well well-sm well-social-post">
+                    <form>
+                        <ul class="list-inline" id='list_PostActions'>
+                            <li class='active'><a href='#'>Update status</a></li>
+                            <li><a href='#'>Add photos/Video</a></li>
+                            <li><a href='#'>Create photo album</a></li>
+                        </ul>
+                        <textarea class="form-control" placeholder="What's in your mind?"></textarea>
+                        <ul class='list-inline post-actions'>
+                            <li><a href="#"><span class="glyphicon glyphicon-camera"></span></a></li>
+                            <li><a href="#" class='glyphicon glyphicon-user'></a></li>
+                            <li><a href="#" class='glyphicon glyphicon-map-marker'></a></li>
+                            <li class='pull-right'><a href="index.html" class='btn btn-primary btn-xs'>Cancel</a></li>
+                            <li class='pull-right'><a href="#" class='btn btn-primary btn-xs'>Post</a></li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+                var postActions = $('#list_PostActions');
+                var currentAction = $('#list_PostActions li.active');
+                if (currentAction.length === 0) {
+                    postActions.find('li:first').addClass('active');
+                }
+                postActions.find('li').on('click', function (e) {
+                    e.preventDefault();
+                    var self = $(this);
+                    if (self === currentAction) { return; }
+                    // else
+                    currentAction.removeClass('active');
+                    self.addClass('active');
+                    currentAction = self;
+                });
+            }); 
+    </script>
+</body>
+</html>
