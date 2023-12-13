@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-
+    <!------------------------------- NAV ------------------------------->
     <nav>
         <div class="container">
             <h2 class="log">ALOHCMUTE</h2>
@@ -20,11 +20,11 @@
                 <div class="profile-photo">
                     <a href="profile.html"><img src="/images/profile-1.jpg" alt=""></a>
                 </div>
-                <a href="/login" class="btn btn-primary">Logout</a>
+                <label class="btn btn-primary">Logout</label>
             </div>
         </div>
     </nav>
-    
+
     <!------------------------------- MAIN ------------------------------->
     <main>
         <div class="container">
@@ -130,8 +130,21 @@
                         <div class="head">
                             <div class="user">
                                 <div class="profile-photo">
-                                    <img src="/images/profile-13.jpg" alt="">
+                                    <img style="cursor: pointer;" src="/static/images/profile-13.jpg" alt="" id="profileImage">
                                 </div>
+                                
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        // Lấy đối tượng ảnh
+                                        var profileImage = document.getElementById('profileImage');
+
+                                        // Thêm sự kiện click vào ảnh
+                                        profileImage.addEventListener('click', function () {
+                                            // Chuyển hướng trang khi nhấn vào ảnh
+                                            window.location.href = 'friend_profile.html';
+                                        });
+                                    });
+                                </script>
                                 <div class="ingo">
                                     <h3>Lana Rose</h3>
                                     <small>Dubai, 15 MINUTES AGO</small>
