@@ -71,23 +71,22 @@ public class LoginController {
         return "login";
     }
     @RequestMapping("/logintohome")
-    public ModelAndView logintohome(ModelMap modelMap,@RequestParam(name="passwordHash" ,required = false) String passwordHash,
-                                    @RequestParam(name="email" ,required = false) String email
-                                    ){
-        System.out.println(passwordHash);
-        System.out.println(email);
-        if(passwordHash == null ||passwordHash =="" || email == null || email == ""){
-            return new ModelAndView("redirect:/login.html");
-        }
-        User entity = new User();
-        entity = userServce.findByEmail(email);
-        if(email != null){
-            if(BCrypt.checkpw(passwordHash,entity.getPasswordHash())) {
-                return new ModelAndView("redirect:/index.html");
-            }else{
-                return new ModelAndView("redirect:/login.html");
-            }
-        }
-        return new ModelAndView("redirect:/index.html");
-    }
+	public ModelAndView logintohome(ModelMap modelMap,
+			@RequestParam(name = "passwordHash", required = false) String passwordHash,
+			@RequestParam(name = "email", required = false) String email, RedirectAttributes redirectAttributes) {
+
+		if (passwordHash == null || passwordHash.equals("") || email == null || email.equals("")) {
+			return new ModelAndView("redirect:/login.html?error=true");
+		}
+
+		UserEntity entity = userServce.findByEmail(email);
+
+		if (entity != null && BCrypt.checkpw(passwordHash, entity.getPasswordHash())) {
+			return new ModelAndView("redirect:/index.html");
+		} else {
+			// Add an attribute to indicate login failure
+			redirectAttributes.addAttribute("error", true);
+			return new ModelAndView("redirect:/login.html");
+		}
+	}
 }
