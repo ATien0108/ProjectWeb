@@ -1,6 +1,7 @@
 package com.test.IServices;
 
 import com.test.entities.User;
+import com.test.entities.UserEntity;
 
 import java.util.Optional;
 
@@ -32,4 +33,5 @@ public interface IUserService {
 
 
 	User findByUserInfoId(Long userId);
+	void save(UserEntity entity);
 }
