@@ -20,6 +20,11 @@
         <div class="row" style="margin-top:20px">
             <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
                 <form role="form" id="loginForm" th:action="@{/logintohome}" method="post">
+
+                        <div th:if="${param.error}">
+						<p class="alert alert-danger">Email hoặc mật khẩu không đúng.</p>
+					    </div>
+                    
                         <h1>Welcome to ALOHCMUTE</h1>
                         <span>ALOHCMUTE giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống của bạn.</span>
                         <hr>
