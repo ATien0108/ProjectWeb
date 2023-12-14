@@ -1,6 +1,7 @@
 package com.test.controllers;
 
 import com.test.IServices.IUserService;
+import com.test.entities.User;
 import com.test.entities.UserEntity;
 import com.test.models.UserModel;
 import jakarta.servlet.http.HttpSession;
@@ -82,7 +83,7 @@ public class LoginController {
 			return new ModelAndView("redirect:/login.html?error=true");
 		}
         UserModel userModel = new UserModel();
-		UserEntity entity = new UserEntity();
+		User entity = new User();
         entity = userServce.findByEmail(email);
 		if (entity != null && BCrypt.checkpw(passwordHash, entity.getPasswordHash())) {
             BeanUtils.copyProperties(entity,userModel);
