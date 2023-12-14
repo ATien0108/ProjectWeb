@@ -1,6 +1,6 @@
 package com.test.IServices.Impl;
 
-import com.test.IServices.IUserServce;
+import com.test.IServices.IUserService;
 import com.test.entities.User;
 import com.test.responsitory.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements IUserServce {
+public class UserServiceImpl implements IUserService {
     @Autowired
     UserRepository userrerository;
 
@@ -22,5 +22,15 @@ public class UserServiceImpl implements IUserServce {
     public User findByEmail(String email) {
         return userrerository.findByEmail(email);
     }
+
+	@Override
+	public User getUserById(Object id) {
+		
+		if(id.getClass() == String.class)
+			id = Integer.parseInt((String)id);
+		if(id.getClass() == Integer.class)
+			return userrerository.getOne((Integer) id);
+		return null;
+	}
 
 }

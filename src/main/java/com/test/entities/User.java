@@ -17,8 +17,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name="Name")
-    private String username;
+    @Column(name="name")
+    private String name;
     @Column(name = "email")
     private String email;
     @Column(name = "passwordHash")
@@ -49,7 +49,7 @@ public class User {
 			String image) {
 		super();
 		this.id = id;
-		this.username = username;
+		this.name = username;
 		this.email = email;
 		this.passwordHash = passwordHash;
 		this.regiteredat = regiteredat;
@@ -63,10 +63,10 @@ public class User {
 		this.id = id;
 	}
 	public String getUsername() {
-		return username;
+		return name;
 	}
 	public void setUsername(String username) {
-		this.username = username;
+		this.name = username;
 	}
 	public String getEmail() {
 		return email;
@@ -91,7 +91,7 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", email=" + email + ", passwordHash=" + passwordHash
+		return "User [id=" + id + ", username=" + name + ", email=" + email + ", passwordHash=" + passwordHash
 				+ ", regiteredat=" + regiteredat + ", profile=" + profile + ", image=" + image + "]";
 	}
 	

@@ -9,7 +9,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-
+	<!------------------------------- NAV ------------------------------->
 	<nav>
 		<div class="container">
 			<h2 class="log" style="cursor: pointer;">ALOHCMUTE</h2>
@@ -46,7 +46,8 @@
 			<div class="left">
 				<a class="profile">
 					<div class="profile-photo">
-						<img src="/images/profile-1.jpg" style="cursor: pointer;" alt="" id="profileImage">
+						<img src="/images/profile-1.jpg" style="cursor: pointer;" alt=""
+							id="profileImage">
 					</div> <script>
 						document
 								.addEventListener(
@@ -110,9 +111,30 @@
 							</div>
 						</div>
 					</a> <a class="menu-item" id="message-notifications"> <span><i
-							class="fa-solid fa-envelope"><small
-								class="notification-count">6</small></i></i></i></span>
-						<h3>Message</h3>
+							class="fa-solid fa-envelope"></i></i></i></span>
+						<h3>Message</h3> <script>
+							document
+									.addEventListener(
+											'DOMContentLoaded',
+											function() {
+												// Lấy đối tượng liên kết
+												var messageLink = document
+														.getElementById('message-notifications');
+
+												// Thêm sự kiện click vào liên kết
+												messageLink
+														.addEventListener(
+																'click',
+																function(event) {
+																	// Ngăn chặn hành động mặc định của liên kết (ngăn không cho nó chuyển hướng)
+																	event
+																			.preventDefault();
+
+																	// Chuyển hướng trang khi click vào liên kết
+																	window.location.href = 'chat';
+																});
+											});
+						</script>
 					</a> <a class="menu-item" id="theme"> <span><i
 							class="fa-solid fa-palette"></i></i></span>
 						<h3>Theme</h3>

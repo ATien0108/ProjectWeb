@@ -77,6 +77,4 @@ public class UserModel {
 		return "UserModel [id=" + id + ", username=" + username + ", email=" + email + ", passwordHash=" + passwordHash
 				+ ", regiteredat=" + regiteredat + ", profile=" + profile + ", image=" + image + "]";
 	}
-    
-    
 }
