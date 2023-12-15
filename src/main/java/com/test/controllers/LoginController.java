@@ -43,7 +43,7 @@ public class LoginController {
         return "register";
     }
     @PostMapping("/registerSS")
-    public String register(ModelMap modelMap, @Valid @ModelAttribute("user") UserModel user, BindingResult result,
+    public String register(ModelMap modelMap, @Valid @ModelAttribute("user") User user, BindingResult result,
                                  @RequestParam("regiteredat") String datestring
                                  ){
             User entity = new User();
@@ -81,12 +81,12 @@ public class LoginController {
 		if (passwordHash == null || passwordHash.equals("") || email == null || email.equals("")) {
 			return new ModelAndView("redirect:/login.html?error=true");
 		}
-        UserModel userModel = new UserModel();
+        User userModel = new User();
 		User entity = new User();
         entity = userServce.findByEmail(email);
 		if (entity != null && BCrypt.checkpw(passwordHash, entity.getPasswordHash())) {
-            BeanUtils.copyProperties(entity,userModel);
-            session.setAttribute("user",userModel);
+            BeanUtils.copyProperties(entity,user);
+            session.setAttribute("user",user);
 			return new ModelAndView("redirect:/index.html");
 		} else {
 			// Add an attribute to indicate login failure
