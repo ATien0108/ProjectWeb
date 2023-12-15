@@ -1,10 +1,10 @@
 package com.test.controllers;
 
 import com.test.IServices.IUserService;
-import com.test.entities.UserEntity;
-import com.test.models.UserModel;
+import com.test.entities.User;
+//import com.test.models.User;
 import jakarta.servlet.http.HttpSession;
-import org.apache.catalina.User;
+//import org.apache.catalina.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -31,24 +31,24 @@ public class HomeController {
 	@RequestMapping("/index.html")
 	public String index(ModelMap modelMap, HttpSession httpSession){
 		if(httpSession.getAttribute("user") != null){
-			UserModel userModel = (UserModel) httpSession.getAttribute("user");
-			modelMap.addAttribute("user",userModel);
+			User User = (User) httpSession.getAttribute("user");
+			modelMap.addAttribute("user",User);
 		}
 		return "index";
 	}
 	@RequestMapping("/profile.html")
 	public String profile(ModelMap modelMap,HttpSession session){
 		if(session.getAttribute("user") != null){
-			UserModel userModel = (UserModel) session.getAttribute("user");
-			modelMap.addAttribute("user",userModel);
+			User User = (User) session.getAttribute("user");
+			modelMap.addAttribute("user",User);
 		}
 		return "profile";
 	}
 	@RequestMapping("/edit_profile.html")
 	public String edit_profile(ModelMap modelMap,HttpSession session){
 		if(session.getAttribute("user") != null){
-			UserModel userModel = (UserModel) session.getAttribute("user");
-			modelMap.addAttribute("user",userModel);
+			User User = (User) session.getAttribute("user");
+			modelMap.addAttribute("user",User);
 		}
 		return "edit_profile";
 	}
