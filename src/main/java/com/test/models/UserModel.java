@@ -77,4 +77,8 @@ public class UserModel {
 		return "UserModel [id=" + id + ", username=" + username + ", email=" + email + ", passwordHash=" + passwordHash
 				+ ", regiteredat=" + regiteredat + ", profile=" + profile + ", image=" + image + "]";
 	}
+		public String getPassword() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
