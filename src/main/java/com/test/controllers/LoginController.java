@@ -81,7 +81,7 @@ public class LoginController {
 		if (passwordHash == null || passwordHash.equals("") || email == null || email.equals("")) {
 			return new ModelAndView("redirect:/login.html?error=true");
 		}
-        User userModel = new User();
+        User user = new User();
 		User entity = new User();
         entity = userServce.findByEmail(email);
 		if (entity != null && BCrypt.checkpw(passwordHash, entity.getPasswordHash())) {
