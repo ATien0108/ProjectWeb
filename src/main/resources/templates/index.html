@@ -67,10 +67,15 @@
 															});
 										});
 					</script>
-					<div class="handle">
+					<div class="handle" th:if="${user != null}">
+						<h4 th:text="${user.username}"></h4>
+						<p class="text-muted">#dayi</p>
+					</div>
+					<div class="handle" th:if="${user == null}">
 						<h4>Diana Ayi</h4>
 						<p class="text-muted">#dayi</p>
 					</div>
+
 				</a>
 
 				<!-- SIDEBAR -->
