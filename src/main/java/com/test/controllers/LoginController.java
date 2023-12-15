@@ -1,7 +1,7 @@
 package com.test.controllers;
 
 import com.test.IServices.IUserService;
-import com.test.entities.UserEntity;
+import com.test.entities.User;
 import com.test.models.UserModel;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
