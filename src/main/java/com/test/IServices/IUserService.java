@@ -8,5 +8,5 @@ public interface IUserService {
     <S extends User> S save(S entity);
     User findByEmail(String email);
     User getUserById(Object id);
-    void save(User entity);
+//    void save(User entity);
 }
