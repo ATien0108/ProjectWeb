@@ -46,7 +46,7 @@ public class LoginController {
     public String register(ModelMap modelMap, @Valid @ModelAttribute("user") UserModel user, BindingResult result,
                                  @RequestParam("regiteredat") String datestring
                                  ){
-            UserEntity entity = new UserEntity();
+            User entity = new User();
             BeanUtils.copyProperties(user,entity);
             
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
