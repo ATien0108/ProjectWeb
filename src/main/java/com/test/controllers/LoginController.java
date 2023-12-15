@@ -82,7 +82,7 @@ public class LoginController {
 			return new ModelAndView("redirect:/login.html?error=true");
 		}
         UserModel userModel = new UserModel();
-		UserEntity entity = new UserEntity();
+		User entity = new User();
         entity = userServce.findByEmail(email);
 		if (entity != null && BCrypt.checkpw(passwordHash, entity.getPasswordHash())) {
             BeanUtils.copyProperties(entity,userModel);
