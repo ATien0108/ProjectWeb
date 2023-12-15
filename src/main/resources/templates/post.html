@@ -8,46 +8,6 @@
     <script src='https://netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js'></script>
     <link rel="stylesheet" href="/css/post.css">
     
-    <script>
-        $(function () {
-            function isLoggedIn() {
-                return true; 
-            }
-
-            // Sự kiện click cho nút "Post"
-            $('#postButton').on('click', function (e) {
-                // Ngăn chặn hành động mặc định của nút "Post"
-                e.preventDefault();
-                
-                // Kiểm tra trạng thái đăng nhập
-                if (isLoggedIn()) {
-                    // Nếu đã đăng nhập, chuyển hướng tới index.html
-                    window.location.href = "index.html";
-                } else {
-                    // Nếu chưa đăng nhập, chuyển hướng tới trang login.html
-                    window.location.href = "login.html";
-                }
-            });
-
-            var postActions = $('#list_PostActions');
-            var currentAction = $('#list_PostActions li.active');
-
-            if (currentAction.length === 0) {
-                postActions.find('li:first').addClass('active');
-            }
-
-            postActions.find('li').on('click', function (e) {
-                e.preventDefault();
-                var self = $(this);
-
-                if (self === currentAction) { return; }
-                // else
-                currentAction.removeClass('active');
-                self.addClass('active');
-                currentAction = self;
-            });
-        });
-    </script>
 </head>
 <body>
     <div class="container bootstrap snippets bootdey">
@@ -67,7 +27,7 @@
                             <li><a href="#" class='glyphicon glyphicon-user'></a></li>
                             <li><a href="#" class='glyphicon glyphicon-map-marker'></a></li>
                             <li class='pull-right'><a href="index.html" class='btn btn-primary btn-xs'>Cancel</a></li>
-                            <li class='pull-right'><a href="index.html" id="postButton" class='btn btn-primary btn-xs'>Post</a></li>
+                            <li class='pull-right'><a href="#" class='btn btn-primary btn-xs'>Post</a></li>
                         </ul>
                     </form>
                 </div>
@@ -92,27 +52,5 @@
                 });
             }); 
     </script>
-    
-    <script>
-	    $(function () {
-	        function isLoggedIn() {
-	            return true; 
-	        }
-	        $('#postButton').on('click', function (e) {
-	            // Ngăn chặn hành động mặc định của nút "Post"
-	            e.preventDefault();
-	            // Kiểm tra trạng thái đăng nhập
-	            if (isLoggedIn()) {
-	                // Nếu đã đăng nhập, chuyển hướng tới index.html
-	                window.location.href = "index.html";
-	            } else {
-	                // Nếu chưa đăng nhập, chuyển hướng tới trang login.html
-	                window.location.href = "login.html";
-	            }
-	        });
-	
-	    });
-	</script>
-    
 </body>
 </html>

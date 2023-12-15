@@ -66,7 +66,6 @@ public class ChatController {
 			System.out.println("//////////////////////"+listmsg.size());
 			modelMap.addAttribute("listmsg",listmsg);
 		}
-		
 		return "messages";
 	}
 }

@@ -2,11 +2,7 @@ package com.test.IServices.Impl;
 
 import com.test.IServices.IUserService;
 import com.test.entities.User;
-import com.test.entities.UserEntity;
 import com.test.responsitory.UserRepository;
-
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
@@ -35,72 +31,6 @@ public class UserServiceImpl implements IUserService {
 		if(id.getClass() == Integer.class)
 			return userrerository.getOne((Integer) id);
 		return null;
-	}
-
-	@Override
-	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String validToken(String token) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void deleteByUserResetPass(User user) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void createToken(User user, String token) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public long count() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Boolean checkLogin(String Email, String pass) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Optional<User> findByemailContaining(String name) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
-	}
-
-	@Override
-	public void changePass(User user, String pass) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Optional<User> findById(Long id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
-	}
-
-	@Override
-	public User findByUserInfoId(Long userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void save(UserEntity entity) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

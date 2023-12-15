@@ -2,26 +2,23 @@ package com.test.controllers;
 
 import com.test.IServices.IUserService;
 import com.test.entities.User;
-import com.test.entities.UserEntity;
 import com.test.models.UserModel;
-import jakarta.servlet.http.HttpSession;
+
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.expression.ParseException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -47,7 +44,7 @@ public class LoginController {
     public String register(ModelMap modelMap, @Valid @ModelAttribute("user") UserModel user, BindingResult result,
                                  @RequestParam("regiteredat") String datestring
                                  ){
-            UserEntity entity = new UserEntity();
+            User entity = new User();
             BeanUtils.copyProperties(user,entity);
             
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -73,35 +70,25 @@ public class LoginController {
             }
         return "login";
     }
-    
     @RequestMapping("/logintohome")
-	public ModelAndView logintohome(ModelMap modelMap, HttpSession session,
-                                    @RequestParam(name = "passwordHash", required = false) String passwordHash,
-                                    @RequestParam(name = "email", required = false) String email, RedirectAttributes redirectAttributes) {
-
-		if (passwordHash == null || passwordHash.equals("") || email == null || email.equals("")) {
-			return new ModelAndView("redirect:/login.html?error=true");
-		}
-        UserModel userModel = new UserModel();
-		User entity = new User();
-        entity = userServce.findByEmail(email);
-		if (entity != null && BCrypt.checkpw(passwordHash, entity.getPasswordHash())) {
-            BeanUtils.copyProperties(entity,userModel);
-            session.setAttribute("user",userModel);
-			return new ModelAndView("redirect:/index.html");
-		} else {
-			// Add an attribute to indicate login failure
-			redirectAttributes.addAttribute("error", true);
-			return new ModelAndView("redirect:/login.html");
-		}
-	}
-    @RequestMapping("/logout")
-    public ModelAndView logout(HttpSession session){
-        if(session.getAttribute("user") != null){
-            session.removeAttribute("user");
-            return new ModelAndView("redirect:/login");
+    public ModelAndView logintohome(ModelMap modelMap,@RequestParam(name="passwordHash" ,required = false) String passwordHash,
+                                    @RequestParam(name="email" ,required = false) String email,
+                                    HttpServletRequest req){
+        System.out.println(passwordHash);
+        System.out.println(email);
+        if(passwordHash == null ||passwordHash =="" || email == null || email == ""){
+            return new ModelAndView("redirect:/login.html");
         }
-        return new ModelAndView("redirect:/login");
+        User entity = new User();
+        entity = userServce.findByEmail(email);
+        if(email != null){
+            if(BCrypt.checkpw(passwordHash,entity.getPasswordHash())) {
+            	req.getSession().setAttribute("user", entity);
+                return new ModelAndView("redirect:/index.html");
+            }else{
+                return new ModelAndView("redirect:/login.html");
+            }
+        }
+        return new ModelAndView("redirect:/index.html");
     }
 }
-    
